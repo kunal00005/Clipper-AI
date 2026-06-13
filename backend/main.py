@@ -18,7 +18,8 @@ groq_client = Groq(
 )
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[ "http://localhost:5173",
+    "https://clipper-ai-ten.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

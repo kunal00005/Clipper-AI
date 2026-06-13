@@ -336,7 +336,7 @@ export default function App() {
   async function analyzeVideo() {
     const videoId = parseVideoId(url);
     const transcriptResponse = await fetch(
-    `http://127.0.0.1:8000/transcript/${videoId}`
+    `https://clipper-ai-backend-d27m.onrender.com/transcript/${videoId}`
     );
 
 const transcriptData =
@@ -404,7 +404,7 @@ Rules:
 
     try {
   const response = await fetch(
-  "http://127.0.0.1:8000/analyze",
+  "https://clipper-ai-backend-d27m.onrender.com/analyze",
   {
     method: "POST",
     headers: {
