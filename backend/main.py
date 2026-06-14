@@ -1,7 +1,6 @@
-@app.get("/version")
-def version():
-    return {"version": "TEST_123"}
+
 import os
+import yt_dlp
 from dotenv import load_dotenv
 from groq import Groq
 from pydantic import BaseModel
@@ -9,9 +8,12 @@ from pydantic import BaseModel
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
-import yt_dlp
+
 
 app = FastAPI()
+@app.get("/version")
+def version():
+    return {"version": "TEST_123"}
 
 @app.get("/test-ytdlp")
 def test_ytdlp():
