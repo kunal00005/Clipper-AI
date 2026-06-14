@@ -5,6 +5,41 @@ from pydantic import BaseModel
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI
+import yt_dlp
+
+app = FastAPI()
+
+@app.get("/test-ytdlp")
+def test_ytdlp():
+    try:
+        with yt_dlp.YoutubeDL({"quiet": True}) as ydl:
+            info = ydl.extract_info(
+                "https://www.youtube.com/watch?v=kA_g0z_L9wY",
+                download=False
+            )
+
+        return {
+            "success": True,
+            "title": info.get("title"),
+            "duration": info.get("duration")
+        }
+
+    except Exception as e:
+        return {
+            "success": False,
+            "error": str(e)
+        }
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://clipper-ai-production-cf41.up.railway.app",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 from youtube_transcript_api import YouTubeTranscriptApi
 class AnalyzeRequest(BaseModel):
     transcript: str
