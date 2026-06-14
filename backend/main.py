@@ -1,3 +1,6 @@
+@app.get("/version")
+def version():
+    return {"version": "TEST_123"}
 import os
 from dotenv import load_dotenv
 from groq import Groq
